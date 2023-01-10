@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Drag and Drop</title>
+        
+    </head>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0px;
+            background-color: #444;
+            color: #ddd;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 100px
+        }
+
+        .frameArea1 {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 600px;
+            height: 200px;
+            border: 2px solid #ccc;
+            margin-bottom: 10px;
+        }
+
+        .item {
+            width: 120px;
+            height: 120px;
+            background-color: black;
+            text-align: center;
+            line-height: 120px;
+            font-size: 30px;
+            border-radius: 100%;
+        }
+
+        .hover {
+            background-color: hsl(358deg 86% 51%);
+            border: 3px solid black;
+            opacity: 0.3;
+        }
+
+        .frameArea2.hover2 .area {
+            background-color: hsl(358deg 86% 51%);
+            border: 3px solid black;
+            opacity: 0.3;
+        }
+
+        .frameArea2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr;
+            width: 600px;
+            height: 100px;
+        }
+
+        .frameArea2.correct .area {
+            border: 3px solid green;
+        }
+
+        .area {
+            width: 200px;
+            height: 200px;
+            border: 2px solid #ccc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        img {
+            width: 120px;
+            text-align: center;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 200px;
+        }
+    </style>
+
+    <body>
+
+        <h1>Drag and Drop</h1>
+        <div class="container">
+            <div class="frameArea1">
+                <div class="item"><img draggable="true" src="assets/images/escudoInter.png" data-item="a"></div>
+                <div class="item"><img draggable="true" src="assets/images/escudoInter2.png" data-item="b"></div>
+                <div class="item"><img draggable="true" src="assets/images/escudoInter3.png" data-item="c"></div>
+            </div>
+            <div class="frameArea2">
+                <div class="area" data-name="a"></div>
+                <div class="area" data-name="b"></div>
+                <div class="area" data-name="c"></div>
+            </div>
+        </div>
+        <footer>Criado por Web7 e adaptado por Carlos Magno Dresch</footer>
+        <script>
+            // List Data
+
+            let areas = {
+                a: null,
+                b: null,
+                c: null
+            }
+
+            document.querySelectorAll('.item').forEach((item) => {
+                item.addEventListener('dragstart', dragStart);
+                item.addEventListener('dragend', dragEnd);
+            });
+
+            document.querySelectorAll('.area').forEach((area) => {
+                area.addEventListener('dragover', dragOver);
+                area.addEventListener('dragleave', dragLeave);
+                area.addEventListener('drop', drop);
+            });
+
+            document.querySelector('.frameArea1').addEventListener('dragover', dragOverFrameArea);
+            document.querySelector('.frameArea1').addEventListener('dragleave', dragLeaveFrameArea);
+            document.querySelector('.frameArea1').addEventListener('drop', dropFrameArea);
+
+            //Functions Item Especify
+
+            function dragStart(e) {
+                e.currentTarget.classList.add('hover');
+
+            }
+            function dragEnd(e) {
+                e.currentTarget.classList.remove('hover');
+            }
+
+            //Functions Area            
+
+            function dragOver(e) {
+                if (e.currentTarget.querySelector('.item') === null) {
+                    e.preventDefault();
+                    e.currentTarget.classList.add('hover');
+                }
+            }
+            function dragLeave(e) {
+                e.currentTarget.classList.remove('hover');
+            }
+            function drop(e) {
+                e.currentTarget.classList.remove('hover');
+                if (e.currentTarget.querySelector('.item') === null) {
+                    let itemDrag = document.querySelector('.item.hover');
+                    e.currentTarget.appendChild(itemDrag);
+                }
+                updateAreas();              
+
+            }
+
+            //Functions FrameArea1
+
+            function dragOverFrameArea(e) {
+                e.preventDefault();
+                e.currentTarget.classList.add('hover');
+            }
+
+            function dragLeaveFrameArea(e) {
+                e.currentTarget.classList.remove('hover');
+            }
+
+            function dropFrameArea(e) {
+                e.currentTarget.classList.remove('hover');
+                let itemframe = document.querySelector('.item.hover');
+                e.currentTarget.appendChild(itemframe);
+                updateAreas();               
+                
+            }
+
+
+            //Logic Functions
+
+            function updateAreas() {
+                document.querySelectorAll('.area').forEach(area => {
+                    let name = area.getAttribute('data-name');
+
+                    if (area.querySelector('.item')) {
+                        areas[name] = area.querySelector('.item').querySelector('img').getAttribute('data-item');
+                    } else {
+                        areas[name] = null;
+                    }
+                });
+
+                if (areas.a === 'a' && areas.b === 'b' && areas.c === 'c') {
+                    document.querySelector('.frameArea2').classList.add('correct');
+                } else{
+                     document.querySelector('.frameArea2').classList.remove('correct');
+                }
+
+            }
+
+
+
+        </script>
+
+    </body>
+
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Jogo da Velha</title>
+    </head>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #555;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+
+        }
+
+        #q {
+            width: 120px;
+            height: 120px;
+            color: white;
+            font-size: 120px;
+            text-align: center;
+            line-height: 120px;
+
+        }
+
+        #q:hover {
+            background-color: #999;
+            cursor: pointer;
+            box-shadow: 4px 4px 4px rgb(238, 232, 232);
+        }
+
+        .tab {
+            width: 360px;
+            height: 360px;
+            display: grid;
+            margin: auto;
+            grid-template-columns: 1fr 1fr 1fr;
+            margin-bottom: 30px;
+        }
+
+        .a {
+            border-bottom: 1px solid #999;
+            border-right: 1px solid #999;
+        }
+
+        .b {
+            border-right: 1px solid #999;
+        }
+
+        .c {
+            border-bottom: 1px solid #999;
+        }
+
+        .result {
+            width: 360px;
+            height: 150px;
+            display: grid;
+            margin: auto;
+            grid-template-columns: 1fr 1fr;
+            border: 1px solid #999;
+        }
+
+        h3 {
+            text-align: center;
+        }
+
+        .player,
+        .winner {
+            text-align: center;
+            font-size: 30px;
+        }
+
+        h3,
+        .player,
+        .winner {
+            color: white;
+        }
+
+        .reset {
+            width: 100px;
+            height: 30px;
+            background-color: transparent;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 5px;
+            margin: auto;
+            margin-top: 30px;
+            cursor: pointer;
+            box-shadow: 4px 4px 4px rgb(238, 232, 232);
+            ;
+
+
+        }
+
+        .modal {
+            width: auto;
+            height: 150px;
+            position: absolute;
+            background-color: rgb(216, 50, 50);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            margin-top: -500px;
+            margin-left: 500px;
+        }
+
+        .title {
+            font-size: 50px;
+            color: rgb(235, 131, 34);
+        }
+    </style>
+
+
+    <body>
+        <div class="container">
+            <h1>Jogo da Velha</h1>
+            <div class="tab">
+                <div data-item="a1" class="a1 a item" id="q" class="s1"></div>
+                <div data-item="b1" class="b1 a item" id="q" class="s2"></div>
+                <div data-item="c1" class="c1 c item" id="q" class="s3"></div>
+                <div data-item="a2" class="a2 a item" id="q" class="s"></div>
+                <div data-item="b2" class="b2 a item" id="q" class="s"></div>
+                <div data-item="c2" class="c2 c item" id="q" class="s"></div>
+                <div data-item="a3" class="a3 b item" id="q" class="s"></div>
+                <div data-item="b3" class="b3 b item" id="q" class="s"></div>
+                <div data-item="c3" class="c3   item" id="q" class="s"></div>
+            </div>
+            <div class="result">
+                <h3>Player</h3>
+                <h3>Winner</h3>
+                <div class="player"></div>
+                <div class="winner"></div>
+            </div>
+
+            <button class="reset">Reset</button>
+
+            <audio src="sounds/keyx.wav" id="s1"></audio>
+
+
+
+        </div>
+
+        <div class="modal">
+            <div class="title">FIM DE JOGO!</div>
+        </div>
+
+        <script>
+            //inicial data
+            let square = {
+                a1: '', a2: '', a3: '',
+                b1: '', b2: '', b3: '',
+                c1: '', c2: '', c3: '',
+            };
+
+            let player = '';
+            let winner = '';
+            let playing = false;
+
+
+            reset();
+
+            //events
+
+            document.querySelector('.reset').addEventListener('click', reset);//limpa o tabuleiro, define o player e o playing
+
+            document.querySelectorAll('.item').forEach(item => {
+                item.addEventListener('click', itemClick);
+            });
+
+
+
+            //Functions
+
+
+            function reset() {
+                winner = '';
+                let random = Math.floor(Math.random() * 2);
+                player = (random === 0) ? 'X' : 'O';
+                for (let i in square) {
+                    square[i] = '';
+                }
+                playing = true;
+                renderSquare(); // preenche o quadro 
+                renderInfo(); // exibe na tela o valor do player e do winner
+                 document.querySelector('.modal').style.display = 'none';
+                
+            }
+
+
+            function itemClick(item) { // seleciona o quadro e preenche com o que está em player da função reset.
+                let items = item.target.getAttribute('data-item');
+                if (playing && square[items] === '') {
+                    square[items] = player;
+                    renderSquare();
+                    togglePlayer();//muda o valor do player.
+                } else {
+
+                    if (playing === true) {
+                        alert('You already clicked here!');
+                    } else {
+                        alert('GAME OVER!');
+                    }
+
+                }
+            }
+
+
+            function renderSquare() { // seleciona e insere o valor do quadro que foi clicado
+                for (let i in square) {
+                    let item = document.querySelector(`div[data-item=${i}]`);
+                    item.innerHTML = square[i];
+                }
+                checkGame();
+            }
+
+            function renderInfo() { //exibe na tela o player e o winner
+               if(playing){
+                document.querySelector('.player').innerHTML = player;
+               }else{
+                 document.querySelector('.player').innerHTML = 'Game Over!';
+               }
+                
+                document.querySelector('.winner').innerHTML = winner;
+            }
+
+            function togglePlayer() {
+                player = (player === 'X') ? 'O' : 'X';
+                renderInfo();
+            }
+
+            function checkGame() {
+                if (checkWinnerFor('X')) {
+                    winner = 'Winner é o "X"';
+                    playing = false;
+                    showModal();
+                } else if (checkWinnerFor('O')) {
+                    winner = 'The winner is "O"';
+                    playing = false;
+                    showModal();
+                } else if (isFull()) {
+                    winner = 'Jogo Empatado!';
+                    playing = false;
+                    showModal();
+                }
+            }
+
+            function checkWinnerFor(player) {
+                let posssibleWinner = [
+                    'a1,a2,a3',
+                    'b1,b2,b3',
+                    'c1,c2,c3',
+
+                    'a1,c1,b1',
+                    'a2,c2,b2',
+                    'a3,c3,b3',
+
+                    'a1,b2,c3',
+                    'a3,b2,c1'
+                ];
+
+                for (let w in posssibleWinner) {
+                    let win = posssibleWinner[w].split(',');
+                    let hasWon = win.every(item => square[item] === player);
+                    if (hasWon) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            function isFull() {
+                for (let i in square) {
+                    if (square[i] === '') {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            function showModal() {
+                document.querySelector('.modal').style.display = 'flex';
+               
+            }
+
+
+
+
+
+
+        </script>
+
+    </body>
+
+</html>

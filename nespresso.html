@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Nespresso</title>
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script> -->
+    <style>
+        * {
+            box-sizing: content-box;
+        }
+
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            width: 996px;
+            margin: auto;
+
+            background-color: antiquewhite;
+        }
+
+        .barraMenu1 {
+            width: 100%;
+            height: 80px;
+            line-height: 80px;
+            margin-bottom: 10px;
+            background-color: black;
+        }
+
+        .menutop {
+            display: flex;
+            justify-content: space-between;
+            margin: auto;
+            width: 996px;
+            background-color: black;
+
+        }
+
+        #logo {
+            float: left;
+            text-decoration: none;
+            color: white;
+            font-size: 30px;
+        }
+
+        .buttons {
+            float: right;
+            display: flex;
+            align-items: center;
+
+        }
+
+        .logIn {
+            display: flex;
+            height: 30px;
+            margin: 20px;
+            align-items: center;
+            color: white;
+            background-color: black;
+            border: 1px solid white;
+            border-radius: 3px;
+        }
+
+        .logIn button:hover {
+            background-color: white;
+            color: black;
+        }
+
+        .buyCar {
+            display: flex;
+            height: 30px;
+            align-items: center;
+            color: white;
+            background-color: black;
+            border: 1px solid white;
+            border-radius: 3px;
+        }
+
+        .buyCar button:hover {
+            background-color: white;
+            color: black
+        }
+
+        .btn {
+            background-color: black;
+            color: white;
+            border: none
+        }
+
+        .barraMenu2 {
+            width: 100%;
+            height: 80px;
+            margin-bottom: 10px;
+            background-color: #1b1b1b;
+        }
+
+        .divMenuLista {
+            display: flex;
+            margin: auto;
+            height: 80px;
+            width: 996px;
+        }
+
+        .listaMenu li {
+            margin: 10px;
+            float: left;
+            list-style: none;
+
+        }
+
+        .listaMenu a {
+            color: white;
+            font-size: 15px;
+            text-decoration: none;
+        }
+
+        .listaMenu li a:hover {
+            background-color: white;
+            color: black;
+        }
+
+        .slowmotion {
+            width: 100%;
+            height: 415px;
+            /* background-color:rgb(5, 56, 58);
+         opacity: 0.26;
+         margin: auto;
+         margin-top:15px;
+         border: 1px solid white;
+         border-radius: 8px; */
+        }
+
+        .motion {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .left {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+
+        }
+
+        .right {
+            width: 50%;
+
+        }
+
+        .frete {
+            width: 100%;
+            ;
+            height: 30px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            text-align: center;
+            background-color: antiquewhite;
+        }
+
+        .titulo>h3 {
+            background-color: darkkhaki;
+        }
+
+        .colunas {
+            flex-direction: row;
+            align-items: center;
+            text-align: center;
+        }
+
+        .containerFlex {
+            max-width: 75%;
+            margin: auto;
+            display: flex;
+
+        }
+
+        .fig {
+            flex: 1;
+            margin: 5px;
+            align-items: center;
+            justify-content: space-around;
+
+
+        }
+
+        .fig1 {
+            margin: 5px;
+
+        }
+
+        .fig_int {
+            box-shadow: 5px 5px 5px antiquewhite;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="barraMenu1">
+
+        <div class="menutop">
+
+            <div class="logo">
+                <a id="logo" href="#">JOIARARA</a>
+            </div>
+
+            <div class="buttons">
+                <div class="logIn">
+                    <img src="../assets/images/conta.png" alt="" width="20px" height="20px">
+                    <button class="btn"> ACESSE OU CRIE SUA CONTA</button>
+
+                </div>
+                <div class="buyCar">
+                    <img src="../assets/images/carBuy.png" alt="" width="20px" height="20px">
+                    <button class="btn"> SEU CARRINHO</button>
+
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="barraMenu2">
+        <div class="divMenuLista">
+
+            <ul class="listaMenu">
+                <li><a href="#">JOIAS</a></li>
+                <li><a href="#">CASAMENTO</a> </li>
+                <li><a href="#">LIFE</a> </li>
+                <li><a href="#">RELÓGIOS</a> </li>
+                <li><a href="#">ACESSÓRIOS</a> </li>
+                <li><a href="#">MARCAS</a> </li>
+                <li><a href="#">MASCULINO</a> </li>
+
+
+            </ul>
+
+        </div>
+    </div>
+
+    <section class="main-container">
+
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="slowmotion">
+                        <div class="motion">
+                            <div class="left">
+                                <h3>LANÇAMENTO</h3>
+                                <h1>Anel Life</h1>
+                                <button>Conhecer</button>
+                            </div>
+                            <div class="right">
+                                <img src="../assets/images/anel2.jpg" alt="" width="100%" height="100%">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="slowmotion">
+                        <div class="motion">
+                            <div class="left">
+                                <h3>LANÇAMENTO</h3>
+                                <h1>Anel Plus Formatura</h1>
+                                <button>Conhecer</button>
+                            </div>
+                            <div class="right">
+                                <img src="../assets/images/formatura.jpg" alt="" width="100%" height="100%">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="slowmotion">
+                        <div class="motion">
+                            <div class="left">
+                                <h3>LANÇAMENTO</h3>
+                                <h1>Anel Solitárius</h1>
+                                <button>Conhecer</button>
+                            </div>
+                            <div class="right">
+                                <img src="../assets/images/anelSolitarius.jpg" alt="" width="100%" height="100%">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div>
+    </section>
+
+    <div class="frete">
+        <h4>Frete grátis para todo Brasil</h4>
+    </div>
+
+    <section class="containerFlex colunas">
+        <div class="titulo">
+            <h3 style="font-style: italic;">Coleções</h3>
+        </div>
+
+
+        <div class="fig">
+            <div class="fig1"><img class="fig_int" src="../assets/images/anel1.png" widt="120px" height="120px"></div>
+            <h6>ANÉIS</h6>
+        </div>
+        <div class="fig">
+            <div class="fig1"><img class="fig_int" src="../assets/images/pulseira.png" widt="120px" height="120px">
+            </div>
+            <h6>PULSEIRAS</h6>
+
+        </div>
+        <div class="fig">
+            <div class="fig1"><img class="fig_int" src="../assets/images/brincos.png" widt="120px" height="120px"></div>
+            <h6>BRINCOS</h6>
+        </div>
+        <div class="fig">
+            <div class="fig1"><img class="fig_int" src="../assets/images/colar.png" widt="120px" height="120px"></div>
+            <h6>COLARES</h6>
+
+        </div>
+        <div class="fig">
+            <div class="fig1"><img class="fig_int" src="../assets/images/aneisNoivado.png" widt="120px" height="120px">
+            </div>
+            <h6>ANÉIS NOIVADO</h6>
+
+        </div>
+        <div class="fig">
+            <div class="fig1"><img class="fig_int" src="../assets/images/pingente.png" widt="120px" height="120px">
+            </div>
+            <h6>PINGENTES</h6>
+
+        </div>
+
+    </section>
+
+
+
+
+    <canvas id="myChart" width="400" height="400"></canvas>
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [12, 19, 3, 5, 2, 3],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

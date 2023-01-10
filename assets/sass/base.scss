@@ -1,0 +1,1016 @@
+$cor1: #003e51;
+$cor2: #fa8016;
+$cor3: #fa461a;
+$cor4: #ffffff;
+$font1: 22px;
+$space-letter: 1px;
+$line-height: 25px;
+$width--ret: 340px;
+
+* {
+   box-sizing: border-box;
+}
+
+body {
+   margin: 0px;
+   padding: 0px;
+}
+
+/* SECTION 1 */
+
+.section1 {
+   width: 100vw;
+   height: 87vh;
+   background-image: url("../images/lacatelli/banner-locatelli-1.jpg");
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-position: fixed;
+}
+
+.menu--nav {
+   width: 100vw;
+   height: 80px;
+   line-height: 40px;
+   background-color: $cor1;
+}
+
+.menu {
+   width: inherit;
+   display: flex;
+   align-items: center;
+   // margin-left: 40px;
+   // margin-right: 40px;
+   justify-content: space-around;
+}
+
+.menu--item {
+   margin-right: 50px;
+}
+
+.menu--item ul {
+   display: flex;
+}
+
+.logo {
+   color: white;
+   font-weight: bold;
+   letter-spacing: 3px;
+   font-size: 20px;
+  
+   margin-right: 115px;
+}
+
+.menu--item ul li {
+   list-style: none;
+   margin-right: 30px;
+}
+
+.menu--item a {
+   text-decoration: none;
+   text-transform: uppercase;
+   font-size: 15px;
+   color: white;
+   padding-left: 15px;
+   font-weight: 4px;
+}
+
+.menu--item a:hover {
+   color: $cor2;
+}
+
+.button--consultor {
+   color: white;
+   font-size: 15px;
+   text-transform: uppercase;
+   border: 1px solid white;
+   padding: 2px;
+}
+
+.button--consultor:hover {
+   background-color: $cor3;
+   border: 1px solid $cor3;
+   transition: all ease 0.2s;
+}
+
+.header--second {
+   display: flex;
+}
+
+.text--sideL {
+   width: 50%;
+   padding: 70px;
+   display: flex;
+   align-items: center;
+}
+
+.text--sideL h1 {
+   color: #fff;
+   font-size: 2.647rem;
+   text-transform: none;
+   line-height: 2.941rem;
+   font-family: "Playfair Display", serif;
+   font-weight: 400;
+}
+
+.quite--bar {
+   display: flex;
+   flex-direction: column;
+}
+
+// .bar {
+//    width: 1px;
+//    height: 100%;
+//    background-color: $cor3;
+// }
+
+.mouse img {
+   max-width: 100%;
+   position: absolute;
+   margin-left: -4px;
+   animation-name: mouseMove;
+   animation-duration: 0.6s;
+   animation-iteration-count: infinite;
+   animation-direction: alternate-reverse;
+   cursor: pointer;
+}
+
+@keyframes mouseMove {
+   from {
+      margin-top: 3px;
+   }
+   to {
+      margin-top: 10px;
+   }
+}
+
+.text--sideR {
+   width: 50%;
+   padding: 70px;
+   display: flex;
+   align-items: center;
+}
+
+.text--sideR h1 {
+   color: #fff;
+   font-weight: 900;
+   font-size: 2.118rem;
+   letter-spacing: 0;
+   line-height: 2.294rem;
+}
+
+.text--sideR p {
+   color: #fff;
+   font-weight: 300;
+   letter-spacing: $space-letter;
+   line-height: $line-height;
+}
+
+/* SECTION 2 */
+
+.section2 {
+   width: 100vw;
+   height: 100vh;
+   background-image: url("../images/lacatelli/img-bg-content-1.jpg");
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-position: center;
+}
+
+.sect2--content {
+   width: 800px;
+   padding: 90px;
+   display: flex;
+   flex-direction: column;
+}
+
+.sect2--content1 {
+   width: 70%;
+   padding: 30px;
+}
+
+.sect2--content1 p {
+   font-size: $font1;
+   color: $cor1;
+   line-height: $line-height;
+   letter-spacing: $space-letter;
+   font-weight: 800;
+}
+
+.sect2--content2--bar {
+   width: 1px;
+   height: 230px;
+   background-color: $cor1;
+   margin-right: 20px;
+}
+
+.content2--int {
+   display: flex;
+   align-items: center;
+   color: $cor1;
+   padding: 30px;
+}
+
+.content2--text {
+   font-size: 18px;
+   letter-spacing: $space-letter;
+   line-height: $line-height;
+}
+
+/*SECTION 3*/
+
+.section3 {
+   width: 100vw;
+   height: 100vh;
+}
+
+.sect3--content {
+   padding: 120px;
+   display: flex;
+}
+.sect3--left {
+   width: 70%;
+   display: flex;
+   flex-direction: column;
+   margin-right: 200px;
+}
+
+.sect3--left--content1 {
+   font-size: $font1;
+   letter-spacing: $space-letter;
+   color: $cor1;
+   line-height: $line-height;
+   font-weight: 800;
+}
+.left--content2--int {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+}
+
+.sect3--content2--bar {
+   width: 1px;
+   height: 210px;
+   background-color: $cor1;
+   margin-right: 20px;
+}
+
+.left--content2--text {
+   width: 90%;
+   font-size: 18px;
+   letter-spacing: $space-letter;
+   line-height: $line-height;
+   color: $cor1;
+   text-align: justify;
+}
+.sect3--btn--blog {
+   display: flex;
+}
+
+.btn--access {
+   width: 210px;
+   height: 50px;
+   background-color: $cor3;
+   border: 1px solid $cor3;
+   color: white;
+   font-weight: bold;
+   text-align: center;
+   line-height: 50px;
+}
+.btn--arrow {
+   width: 50px;
+   height: 50px;
+   background-color: white;
+   border: 1px solid $cor3;
+   color: $cor3;
+   font-weight: bold;
+   font-size: 35px;
+   text-align: center;
+   line-height: 50px;
+}
+
+.sect3--right {
+   width: 80%;
+   display: flex;
+   flex-direction: column;
+   margin-top: 100px;
+}
+
+.sect3--title1 {
+   font-size: 18px;
+   letter-spacing: $space-letter;
+   color: $cor1;
+   line-height: $line-height;
+   font-weight: 800;
+}
+.table {
+   width: 500px;
+   height: 130px;
+   margin-bottom: 50px;
+   margin-top: 20px;
+   color: $cor1;
+   letter-spacing: $space-letter;
+   font-weight: 900;
+   border-left: 1px solid $cor1;
+}
+#td {
+   border-bottom: 1px solid $cor1;
+}
+
+.sect3--title2 {
+   width: 90%;
+   font-size: 18px;
+   letter-spacing: $space-letter;
+   line-height: $line-height;
+   color: $cor1;
+   text-align: justify;
+}
+
+/*SECTION 4*/
+
+.section4 {
+   width: 100vw;
+   height: 100vh;
+   background-color: #f5f5f5;
+}
+
+.sect4--content {
+   padding: 120px;
+   display: flex;
+}
+.sect4--left {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   margin-right: 200px;
+   justify-content: space-between;
+}
+
+.sect4--left--content1 {
+   font-size: $font1;
+   letter-spacing: $space-letter;
+   color: $cor1;
+   line-height: $line-height;
+   font-weight: 800;
+}
+
+.sect4--btn--blog {
+   display: flex;
+}
+.sect4--btn--access {
+   width: 250px;
+   height: 50px;
+   background-color: $cor3;
+   border: 1px solid $cor3;
+   color: white;
+   font-weight: bold;
+   text-align: center;
+   line-height: 50px;
+}
+
+.sect4--btn--arrow {
+   width: 50px;
+   height: 50px;
+   background-color: white;
+   border: 1px solid $cor3;
+   color: $cor3;
+   font-weight: bold;
+   font-size: 35px;
+   text-align: center;
+   line-height: 50px;
+}
+
+.sect4--right {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+}
+
+.sect4--title1 {
+   font-size: 18px;
+   letter-spacing: $space-letter;
+   color: $cor1;
+   line-height: $line-height;
+   font-weight: 800;
+}
+.table {
+   width: 500px;
+   height: 130px;
+   margin-bottom: 50px;
+   margin-top: 20px;
+   color: $cor1;
+   letter-spacing: $space-letter;
+   font-weight: 900;
+   border-left: 1px solid $cor1;
+}
+#td {
+   border-bottom: 1px solid $cor1;
+}
+
+.sect4--title2 {
+   width: 90%;
+   font-size: 18px;
+   letter-spacing: $space-letter;
+   line-height: $line-height;
+   color: $cor1;
+   text-align: justify;
+}
+
+/*SECTION 5*/
+
+.section5 {
+   width: 100vw;
+   height: 100vh;
+   background-image: url("../images/lacatelli/alto-desempenho.jpg");
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-position: center;
+}
+
+.sect5--content {
+   width: 100vw;
+   height: 100vh;
+   display: flex;
+   flex-direction: column;
+   padding: 120px;
+}
+.sect5--above {
+   width: 50vw;
+   height: 50vh;
+   margin-left: 50%;
+   margin-top: -50px;
+}
+
+.sect5--title h1 {
+   color: $cor1;
+   font-size: 25px;
+   font-weight: bold;
+}
+.sect5--title p {
+   color: $cor1;
+   font-size: 30px;
+}
+.sect5--title2 {
+   display: flex;
+   align-items: center;
+}
+.sect5--title2 p {
+   color: $cor1;
+   font-size: 18px;
+}
+.sect5--content2--bar {
+   width: 1px;
+   height: 50px;
+   background-color: $cor1;
+   margin-right: 20px;
+}
+
+.sect5--below {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-around;
+}
+
+.sect5--r1 {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   width: $width--ret;
+   height: 190px;
+   color: $cor4;
+   background-color: #444;
+   opacity: 0.6;
+   position: relative;
+}
+.sect5--r2 {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   width: $width--ret;
+   height: 190px;
+   color: $cor4;
+   background-color: $cor3;
+   position: relative;
+   margin-top: 30px;
+}
+.sect5--r3 {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   width: $width--ret;
+   height: 190px;
+   color: $cor4;
+   background-color: $cor1;
+   opacity: 0.52;
+   position: relative;
+   margin-top: 60px;
+}
+#ret--h1 {
+   font-size: 40px;
+}
+
+/*SECTION 6*/
+
+.section6 {
+   width: 100vw;
+   height: 100vh;
+   background-image: url("../images/lacatelli/fazemos-a-diferenca.jpg");
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-position: center;
+}
+.sect6--content {
+   width: 60vw;
+   height: 100vh;
+   padding: 120px;
+}
+.sect6--left--content1 {
+   color: $cor1;
+   line-height: $line-height;
+   letter-spacing: $space-letter;
+}
+
+.sect6--content2--bar {
+   width: 1px;
+   height: 200px;
+   background-color: $cor1;
+   margin-right: 20px;
+}
+#sect6--title1 {
+   font-size: $font1;
+   font-weight: bold;
+}
+#sect6--title2 {
+   font-size: 40px;
+   line-height: 45px;
+}
+
+/*SECTION 7*/
+
+.section7 {
+   width: 100vw;
+   height: 100vh;
+   background-color: #f5f5f5;
+}
+.sect7--content {
+   width: 100vw;
+   height: 100vh;
+   display: flex;
+   flex-direction: column;
+}
+.sect7--titles {
+   width: 100vw;
+   height: auto;
+   margin-left: 120px;
+}
+#sect7--title1 {
+   color: $cor1;
+   font-size: $font1;
+   font-weight: bold;
+}
+#sect7--title2 {
+   color: $cor1;
+   font-size: 40px;
+}
+
+.grid--container {
+   width: 82vw;
+   display: grid;
+
+   margin: auto;
+   grid-template-columns: repeat(3, 1fr);
+   gap: 20px;
+}
+.sect7--info1 {
+   grid-column: 1/2;
+   grid-row: 1/2;
+}
+
+.sect7--info2 {
+   grid-column: 2/3;
+   grid-row: 1/2;
+}
+
+.sect7--info3 {
+   grid-column: 3/4;
+   grid-row: 1/2;
+}
+.date {
+   display: flex;
+   align-items: center;
+   margin-bottom: 10px;
+}
+.sect7--bar {
+   width: 1px;
+   height: 35px;
+   background-color: $cor1;
+   margin-right: 20px;
+}
+.sect7--date {
+   color: $cor1;
+   font-size: 15px;
+   font-weight: bold;
+}
+.sect7--image img {
+   max-width: 100%;
+   filter: brightness(
+      50%
+   ); /*blur(0.2px) contrast(70%) grayscale(1%) invert(40%) saturate(250%) hue-rotate(120deg) box-shadow(2px, 3px 10px , red);*/
+}
+.sect7--text1 {
+   color: $cor1;
+   font-size: 15px;
+   font-weight: bold;
+   margin-top: 20px;
+   letter-spacing: $space-letter;
+   cursor: pointer;
+}
+.sect7--text1:hover {
+   color: $cor3;
+   transition: all ease 0.3s;
+}
+.sect7--next {
+   color: $cor2;
+   font-size: 15px;
+   font-weight: bold;
+   margin-top: 20px;
+   cursor: pointer;
+}
+.sect7--bar--carousel {
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   margin-bottom: 50px;
+}
+.sideL {
+   width: 70px;
+   height: 8px;
+   background-color: $cor3;
+   margin-right: 10px;
+   cursor: pointer;
+}
+.sideR {
+   width: 70px;
+   height: 8px;
+   background-color: rgba(0, 62, 81, 0.2);
+   cursor: pointer;
+}
+.sideR:hover {
+   background-color: #999;
+   transition: all ease 0.3s;
+}
+
+/*SECTION 8*/
+
+.section8 {
+   width: 100vw;
+   height: 80vh;
+}
+.sect8--content {
+   width: 100vw;
+   height: 70vh;
+   display: flex;
+   flex-direction: column;
+}
+
+.sect8--titles {
+   margin-left: 120px;
+}
+#sect8--title1 {
+   color: $cor1;
+   font-size: $font1;
+   font-weight: bold;
+}
+
+.sect8--btn {
+   width: 250px;
+   height: 50px;
+   border: 1px solid $cor1;
+   color: $cor1;
+   margin-left: 120px;
+   text-align: center;
+   font-weight: bold;
+   line-height: 45px;
+}
+.sect8--btn:hover {
+   background-color: $cor1;
+   color: white;
+   transition: all ease 0.5s;
+}
+
+/*SECTION 9 */
+
+.section9 {
+   width: 100vw;
+   height: 100vh;
+   background-color: #f5f5f5;
+}
+.sect9--content {
+   width: 100vw;
+   height: 100vh;
+   display: flex;
+   flex-direction: column;
+}
+.sect9--titles {
+   width: 100vw;
+   height: auto;
+   margin-left: 120px;
+}
+#sect9--title1 {
+   color: $cor1;
+   font-size: $font1;
+   font-weight: bold;
+}
+
+.grid--container {
+   width: 82vw;
+   display: grid;
+
+   margin: auto;
+   grid-template-columns: repeat(3, 1fr);
+   gap: 20px;
+}
+.sect9--info1 {
+   grid-column: 1/2;
+   grid-row: 1/2;
+}
+
+.sect9--info2 {
+   grid-column: 2/3;
+   grid-row: 1/2;
+}
+
+.sect9--info3 {
+   grid-column: 3/4;
+   grid-row: 1/2;
+}
+.date {
+   display: flex;
+   align-items: center;
+   margin-bottom: 10px;
+}
+.sect9--bar {
+   width: 1px;
+   height: 35px;
+   background-color: $cor1;
+   margin-right: 20px;
+}
+.sect9--date {
+   color: $cor1;
+   font-size: 15px;
+   font-weight: bold;
+}
+.sect9--image img {
+   max-width: 100%;
+   height: 190px;
+}
+.sect9--text1 {
+   color: $cor1;
+   font-size: 15px;
+   font-weight: bold;
+   margin-top: 20px;
+   letter-spacing: $space-letter;
+   cursor: pointer;
+}
+.sect9--text1:hover {
+   color: $cor3;
+   transition: all ease 0.3s;
+}
+
+.sect9--title--bar {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   cursor: pointer;
+}
+
+.sect9--content2--bar {
+   width: 1px;
+   height: 100px;
+   background-color: $cor1;
+   margin-right: 20px;
+}
+
+.sect9--next {
+   color: $cor2;
+   font-size: 15px;
+   font-weight: bold;
+   margin-top: 20px;
+   cursor: pointer;
+}
+
+.sect9--btn {
+   width: 250px;
+   height: 50px;
+   border: 1px solid $cor1;
+   color: $cor1;
+   margin-left: 120px;
+   text-align: center;
+   font-weight: bold;
+   line-height: 45px;
+   margin-top: 50px;
+   margin-bottom: 50px;
+}
+.sect9--btn:hover {
+   background-color: $cor1;
+   color: white;
+   transition: all ease 0.5s;
+}
+
+/*SECTION 10*/
+
+.section10 {
+   
+   
+   background-image: url("../images/lacatelli/img-bg-footer.jpg");
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-position: center;   
+   
+}
+
+.sect10--content {
+   width: 100vw;
+   height: 100vh;
+}
+.sect10--contents {
+   max-width: 100%;
+    max-height: 100%;
+    display: flex;
+    margin-left: 120px;
+}
+.sect10--left {
+   width: 50%;
+   display: flex;
+   flex-direction: column;
+}
+.sect10--title1 {
+   width: 60%;
+}
+#s10--title {
+   color: white;
+   font-weight: bold;
+   font-size: 20px;
+   margin-bottom: -15px;
+}
+#s10--title2 {
+   color: white;
+
+   font-size: 35px;
+}
+
+.sect10--form {
+   display: grid;
+   grid-template-columns: 250px 250px;
+   grid-template-rows: 60px 60px 170px 60px;
+   gap: 20px;
+   background-color: transparent;
+}
+
+input[name="name"] {
+   grid-column: 1/2;
+   grid-row: 1/2;
+   background-color: transparent;
+   border: 1px solid rgba(255, 255, 255, 0.2);
+   outline: none;
+   color: white;
+   font-style: italic;
+}
+input[name="email"] {
+   grid-column: 2/3;
+   grid-row: 1/2;
+   background-color: transparent;
+   border: 1px solid rgba(255, 255, 255, 0.2);
+   outline: none;
+   color: white;
+   font-style: italic;
+}
+input[name="job"] {
+   grid-column: 1/2;
+   grid-row: 2/3;
+   background-color: transparent;
+   border: 1px solid rgba(255, 255, 255, 0.2);
+   outline: none;
+   color: white;
+   font-style: italic;
+}
+input[name="tel"] {
+   grid-column: 2/3;
+   grid-row: 2/3;
+   background-color: transparent;
+   border: 1px solid rgba(255, 255, 255, 0.2);
+   outline: none;
+   color: white;
+   font-style: italic;
+}
+#sect10--textarea {
+   grid-column: 1/3;
+   grid-row: 3/4;
+   background-color: transparent;
+   border: 1px solid rgba(255, 255, 255, 0.2);
+   resize: none;
+   outline: none;
+   color: white;
+   font-style: italic;
+}
+.sect10--btn {
+   grid-column: 1/2;
+   grid-row: 4/5;
+   background-color: #fa461a;
+   border: 1px solid transparent;
+   color: white;
+   font-weight: bold;
+}
+
+.sect10--right {
+   width: 50%;
+   display: flex;
+   flex-direction: column;
+   margin-top: 150px;
+}
+.sect10--title2 {
+   color: white;
+   font-size: 25px;
+   font-weight: bold;
+   letter-spacing: 0px;
+   margin-bottom: 60px;
+}
+
+.sect10--address {
+   display: flex;
+   align-items: center;
+}
+.sect10--bar1 {
+   width: 1px;
+   height: 120px;
+   background-color: white;
+   margin-right: 10px;
+}
+.sect10--address--local p {
+   color: white;
+}
+
+.sect10--address--local p a:nth-child(1),
+.sect10--address--jobUs {
+   color: #fa8016;
+}
+
+.sect10--address--number {
+   font-weight: bold;
+   color: white;
+}
+
+.sect10--bar2 {
+   width: 1px;
+   height: 30px;
+   background-color: white;
+   margin-right: 10px;
+}
+.sect10--bar3 {
+   width: 1px;
+   height: 30px;
+   background-color: white;
+   margin-right: 10px;
+}
+.sect10--address img {
+   max-width: 100%;
+   height: 20px;
+   filter: invert(100%);
+   margin-right: 30px;
+}
+#sect10--signup {
+   width: 350px;
+   height: 60px;
+   margin-bottom: 50px;
+}
+#sect10--private {
+   color: #fa8016;
+   text-decoration: none;
+}
+#sect10--footer {
+   color: white;
+}
+#flaticon {
+   color: white;
+}
+
+[data-animate] {
+   opacity: 0;
+   transition: 0.5s;
+   transform: translateX(-50px);
+}
+
+.animate {
+   opacity: 1;
+   transform: translateX(0px);
+}
+
+#line {
+   width: 100vw;
+   height: 1px;
+   background-color: rgba(255, 255, 255, 0.2);
+   margin-top: 50px;
+   margin-bottom: 50px;
+}

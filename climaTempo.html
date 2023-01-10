@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clima Tempo</title>
+</head>
+<style>
+    body {
+        background-color: #333;
+    }
+
+    .container {
+        width: 300px;
+        margin: auto;
+        display: grid;
+        grid-template-columns: 1fr;
+
+    }
+
+    h1,
+    h3 {
+        color: white;
+    }
+
+    .climate {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .data {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    #city {
+        margin-right: 20px;
+        border-radius: 6px;
+        height: 30px;
+        outline: none;
+        box-shadow: 2px 0px 2px white;
+    }
+
+    #search {
+        width: 100px;
+        border-radius: 6px;
+        background-color: #666;
+        color: white;
+        font-size: 18px;
+        box-shadow: 2px 0px 2px white;
+
+    }
+
+    .cities {
+        display: flex;
+        flex-direction: row;
+
+    }
+
+    .general_data {
+        width: 100%;
+        height: 250px;
+        background-color: #222;
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #666;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        color: white;
+
+    }
+
+    .data_geral {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .sideL {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    h6 {
+        color: #666;
+        font-size: 15px;
+    }
+
+    #temp_wind {
+        font-size: 30px;
+        margin-bottom: 30px;
+    }
+
+    .vento {
+        width: 45px;
+        height: 45px;
+        border: 1px solid #777;
+        border-radius: 50px;
+        margin-top: 27px;
+
+    }
+
+    .ventoPonto {
+        width: 22px;
+        height: 1px;
+        background-color: rgb(241, 229, 229);
+        color: rgb(245, 233, 233);
+        transform-origin: left;
+        margin-top: 23px;
+        margin-left: 23px;
+
+    }
+
+    .warning {
+        display: block;
+        font-size: 25px;
+        color: white;
+        margin-top: 30px;
+    }
+
+    footer {
+        color: white;
+        font: 18px;
+        text-align: center;
+        margin-top: 50px;
+    }
+</style>
+
+
+<body>
+    <div class="container">
+        <div class="climate">
+            <h1>Climate</h1>
+            <h3>Digite o nome da cidade</h3>
+            <form class="data">
+                <input type="text" id="city">
+                <button id="search">Search</button>
+            </form>
+        </div>
+
+        <div class="general_data">
+            <div id="name_city">nome da cidade <span id="country">e pais</span> </div>
+            <div class="data_geral">
+                <div class="sideL">
+                    <div>
+                        <h6>Temperatura</h6>
+                    </div>
+                    <div><span id="temp" style="font-size:18px;"></span>ºC </div>
+                    <img id="iconImage" src="http://openweathermap.org/img/wn/10d@2x.png" alt="">
+                </div>
+                <div class="sideR">
+                    <div>
+                        <h6>Vento</h6>
+                    </div>
+                    <div><span id="wind" style="font-size:18px;"></span>Km/h</div>
+                    <div class="vento">
+                        <div class="ventoPonto" style="transform: rotate(-90deg);"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="warning" style="color:red;font-weight: bold;"></div>
+        <footer>Criado por -  <strong style="font-size:18px;">Carlos Magno Dresch - Programador/Desenvolvedor</strong>
+        </footer>
+
+        <div class="teste">
+            <p id="url"></p>
+        </div>
+    </div>
+
+
+    <script>
+
+        let form_search = document.querySelector('.data').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            let input = document.querySelector('#city').value;
+            if (input != '' && input.length > 1) {
+                clearData();
+                showWarging('Loading...');
+                let url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURI(input)}&appid=2a3ddf6c899542b0680d0a51f3546125&units=metric&lang=pt_br`;
+
+                let result = await fetch(url);
+                let json = await result.json();
+                console.log(json);
+                let text = '';
+                for (let x in json) {
+                    console.log(x);
+                }
+
+                if (json.cod === 200) {
+                    showData(json);
+                    showWarging(" ");
+                } else {
+                    document.querySelector('.warning').style.display = 'block';
+                    showWarging('Localização não encontrada!');
+                }
+
+            } else {
+                clearData();
+                showWarging("Digite um nome válido!");
+            }
+        });
+        function showData(json) {
+            let divNameCity = document.querySelector('#name_city');
+            let divGeral = document.querySelector('.general_data');
+            let divTemp = document.querySelector('#temp');
+            let divWind = document.querySelector('#wind');
+            let divImage = document.querySelector('#iconImage');
+            let divVento = document.querySelector('.ventoPonto');
+
+
+            divNameCity.innerHTML = `${json.name}, ${json.sys.country}`;
+            divTemp.innerHTML = json.main.temp;
+            divWind.innerHTML = json.wind.speed;
+            divImage.setAttribute('src', `http://openweathermap.org/img/wn/${json.weather[0].icon}@2x.png`);
+            divVento.style.transform = `rotate(${json.wind.deg - 90}deg)`;
+            divGeral.style.display = 'flex';
+        }
+        function showWarging(msg) {
+            document.querySelector('.warning').innerHTML = msg;
+        }
+        function clearData() {
+            showWarging(" ");
+            document.querySelector('.general_data').style.display = 'none';
+        }
+
+
+        let url = 'https://unsa-unofficial-spotify-api.p.rapidapi.com/search?query=magenta%20riddim&count=20&type=tracks';
+
+
+    </script>
+
+</body>
+
+</html>

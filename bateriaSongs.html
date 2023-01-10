@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sons de  Batera Virtual</title>
+    </head>
+
+    <style>
+        body {
+            background-color: rgb(105, 105, 109);
+        }
+
+        h1 {
+            color: white
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+        }
+
+        .key {
+            width: 30px;
+            height: 30px;
+            border: 2px solid white;
+            text-align: center;
+            line-height: 30px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .key.active {
+            border: 2px solid yellow;
+            color: yellow;
+        }
+
+        .keyboard {
+            width: 150px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        input {
+            width: 145px;
+            height: 30px;
+            margin-bottom: 30px;
+            outline: none;
+
+        }
+
+        #btn,#clean {
+            width: 150px;
+            height: 30px;
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+            margin: 10px;
+
+        }
+    </style>
+
+    <body>
+        <div class="container">
+            <h1>BATERIA</h1>
+            <div class="keyboard">
+                <div class="key" data-key="q">Q</div>
+                <div class="key" data-key="w">W</div>
+                <div class="key" data-key="e">E</div>
+                <div class="key" data-key="a">A</div>
+                <div class="key" data-key="s">S</div>
+                <div class="key" data-key="d">D</div>
+                <div class="key" data-key="z">Z</div>
+                <div class="key" data-key="x">X</div>
+                <div class="key" data-key="c">C</div>
+            </div>
+
+            <input type="text" id="input" placeholder="Faça a batera aqui...">
+            <button id="btn">Tocar</button>
+            <button id="clean" onclick="cleaning()">Limpar</button>
+        </div>
+
+        <audio src="assets/sounds/keyq.wav" id="s_q"></audio>
+        <audio src="assets/sounds/keyw.wav" id="s_w"></audio>
+        <audio src="assets/sounds/keye.wav" id="s_e"></audio>
+        <audio src="assets/sounds/keya.wav" id="s_a"></audio>
+        <audio src="assets/sounds/keys.wav" id="s_s"></audio>
+        <audio src="assets/sounds/keyd.wav" id="s_d"></audio>
+        <audio src="assets/sounds/keyz.wav" id="s_z"></audio>
+        <audio src="assets/sounds/keyx.wav" id="s_x"></audio>
+        <audio src="assets/sounds/keyc.wav" id="s_c"></audio>
+        <script>
+
+            document.body.addEventListener('keyup', (event) => {
+                playSound(event.key); 
+                console.log(event.key);
+                               
+            });
+            document.querySelector('#btn').addEventListener('click', () => {
+                let songs = document.querySelector('#input').value;
+               
+                if (songs !== '') {
+                    let mySongs = songs.split('');
+                  
+                    playComposition(mySongs);
+                }
+            });
+            /*FUNÇÃO QUE EMITE O SOM APÓS CLICAR NA TECLA */
+            function playSound(sound) {
+                let audioElement = document.querySelector(`#s_${sound}`);//selecionando a tag audio que tem o id cujo parameto está sendo enviado quando chama a função.
+                let keyElement = document.querySelector(`div[data-key="${sound}"]`)//seleciono a div que tem a classe cujo parametro está sendo enviado quando chamo a função.
+                if (audioElement) {
+                    audioElement.currentTime = 0;
+                    audioElement.play();
+                }
+                if (keyElement) {
+                    keyElement.classList.add('active');
+                    setTimeout(() => {
+                        keyElement.classList.remove('active');
+                    }, 650);
+                }
+            }
+            /*FUNÇÃO QUE EMITE O SOM A CADA 250 MILI SEGUNDOS APÓS CLICAR NO BOTÃO TOCAR*/
+            function playComposition(mySongs) {
+                let wait = 0;
+                for (let songItem of mySongs) {
+                    setTimeout(() => {
+                        playSound(songItem);
+                    }, wait);
+                    wait += 650;
+                }
+            }
+
+             function cleaning(){
+                    document.querySelector('#input').value =  '';
+            }
+        </script>
+    </body>
+
+</html>

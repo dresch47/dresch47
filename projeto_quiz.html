@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Quiz</title>
+    </head>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #444;
+            margin: 0px;
+            color: #ddd;
+            font-size: 20px;
+
+        }
+
+        .container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .progress {
+            width: 100vw;
+            height: 7px;
+            display: grid;
+            grid-template-columns: 1fr*10;
+        }
+
+        .progress--bar {
+            height: inherit;
+            background-color: blue;
+            display: none;
+            transition: all ease 0.5s;
+        }
+
+        .questionsArea {
+            margin-top: 200px;
+        }
+
+        .option {
+            background-color: #333;
+            color: #888;
+            border-radius: 5px;
+            margin: 10px;
+            cursor: pointer;
+        }
+
+        .option:hover {
+            background-color: #666;
+        }
+
+        .scoreArea {
+            width: 500px;
+            height: 300px;
+            background-color: #888;
+            text-align: center;
+            margin-top: 200px;
+            border-radius: 10px;
+
+        }
+
+        button {
+            background-color: #666;
+            border-radius: 3px;
+            color: #ddd;
+            margin-top: 50px;
+        }
+
+        .scorePct {
+            font-size: 45px;
+            text-shadow: 2px 2px 2px rgb(160, 160, 206);
+            */
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 500px;
+
+        }
+    </style>
+
+    <body>
+
+        <div class="container">
+            <div class="progress">
+                <div class="progress--bar"></div>
+            </div>
+            <div class="questionsArea">
+                <div class="questions">...</div>
+                <div class="options">
+
+                </div>
+            </div>
+            <div class="scoreArea">
+                <img src="assets/images/escudoInter.png" alt="Escudo do Inter" width="60px" style="margin-top: 30px;">
+                <div class="scoreText1">Parabéns!</div>
+                <div class="scorePct">Acertou 99%</div>
+                <div class="scoreText2">Voce respondeu 9 questões e acertou 8</div>
+                <button id="remake">Fazer novamente</button>
+            </div>
+        </div>
+
+        <footer>Criado por Carlos Magno Dresch</footer>
+
+        <script>
+
+            //Inicial datas
+            let questions = [
+                {
+                    question: 'Qual o maior ídolo do Inter?',
+                    options: [
+                        'Dalessandro',
+                        'Fernandao',
+                        'Falcão',
+                        'Figueroa'
+                    ],
+                    answer: 0
+                },
+                {
+                    question: 'Qual o ultimo título do Inter?',
+                    options: [
+                        'Copa do Brasil',
+                        'Libertadores da América',
+                        'Brasileirão',
+                        'Gauchão'
+                    ],
+                    answer: 3
+                },
+                {
+                    question: 'Qual o ano do último título do Inter?',
+                    options: [
+                        '2010',
+                        '2016',
+                        '2017',
+                        '2012'
+                    ],
+                    answer: 1
+                },
+                {
+                    question: 'Em que ano o Inter ganhou ou Mundial de Clubes?',
+                    options: [
+                        '2008',
+                        '2007',
+                        '2006',
+                        '2009'
+                    ],
+                    answer: 2
+                },
+
+            ];
+
+            let currentQuestion = 0; // armazena questão atual
+            let qtQuestions = questions.length;
+            let correctAnswer = 0;
+
+            //Events
+
+            let remake = document.querySelector('#remake');
+            remake.addEventListener('click', resetQuiz);
+            showQuestion();
+
+            // Functions
+            function showQuestion() {
+                if (questions[currentQuestion]) {
+                    let q = questions[currentQuestion];
+                    let pct = (currentQuestion / qtQuestions) * 100;
+                    document.querySelector('.progress--bar').style.display = 'block';
+                    document.querySelector('.progress--bar').style.width = pct + '%';
+                    document.querySelector('.scoreArea').style.display = 'none';
+                    document.querySelector('.questionsArea').style.display = 'block';
+                    document.querySelector('.questions').innerHTML = q.question;
+                    document.querySelector('.options').innerHTML = '';
+                    let optionsHtml = '';
+                    for (let i in q.options) {
+                        optionsHtml += `<div class="option" data-op=${i}><span>${parseInt(i) + 1}</span> ${q.options[i]}</div>`;
+                    }
+                    document.querySelector('.options').innerHTML = optionsHtml;
+                    document.querySelectorAll('.options .option').forEach((item) => {
+                        item.addEventListener('click', optionClickEvent);
+                    });
+                } else {
+                    finishQuiz();
+                }
+            }
+
+            function optionClickEvent(e) {
+                let qAttrib = parseInt(e.target.getAttribute('data-op'));
+                if (qAttrib === questions[currentQuestion].answer) {
+                    correctAnswer++;
+                }
+                currentQuestion++;
+                showQuestion();
+            }
+
+            function finishQuiz() {
+                let hits = Math.floor((correctAnswer / qtQuestions) * 100);
+                console.log(hits);
+                document.querySelector('.scoreArea').style.display = 'block';
+                document.querySelector('.questionsArea').style.display = 'none';
+                document.querySelector('.progress--bar').style.width = '100%';
+                if (hits == 0) {
+                    document.querySelector('.scoreText1').innerHTML = 'Que pena, errou tudo. Tente outra vez!';
+                    document.querySelector('.scorePct').innerHTML = `${hits}% de acertos`;
+                    document.querySelector('.scorePct').style.color = 'red';
+                } else if (hits >= 25 && hits <= 50) {
+                    document.querySelector('.scoreText1').innerHTML = 'Tá fraco mas pode melhorar. Tente novamente!';
+                    document.querySelector('.scorePct').innerHTML = `${hits}% de acertos`;
+                    document.querySelector('.scorePct').style.color = 'orange';
+                } else if (hits > 50 && hits <= 75) {
+                    document.querySelector('.scoreText1').innerHTML = 'Melhorou muito. continue tentando!';
+                    document.querySelector('.scorePct').innerHTML = `${hits}% de acertos`;
+                    document.querySelector('.scorePct').style.color = 'yellow';
+                } else if (hits > 75) {
+                    document.querySelector('.scoreText1').innerHTML = 'Parabéns. Acertou tudo';
+                    document.querySelector('.scorePct').innerHTML = `${hits}% de acertos`;
+                    document.querySelector('.scorePct').style.color = '#0d630d';
+                }
+                document.querySelector('.scoreText2').innerHTML = `Você respondeu ${qtQuestions} questões e acertou ${correctAnswer}.`;
+                console.log(correctAnswer);
+            }
+
+            function resetQuiz() {
+                currentQuestion = 0;
+                correctAnswer = 0;
+                showQuestion();
+            }
+
+        </script>
+    </body>
+
+</html>

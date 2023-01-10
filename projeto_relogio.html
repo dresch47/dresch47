@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relógio Analógico e Digital</title>
+</head>
+<style>
+    body {
+        background-color: rgb(78, 76, 76);
+    }
+
+    .geral {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    h1 {
+        color: #fff;
+        font-size: 30px;
+        text-shadow: 4px 0px 4px black, 0 0 25px #ee161f, 0 0 5px red;
+    }
+
+    .container {
+        width: 300px;
+        height: 300px;
+        margin: auto;
+        margin-bottom: 50px;
+        background-image: url('image/escudoInter.png');
+        background-size: cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 150px;
+        box-shadow: 0px 4px 28px rgb(224, 6, 6, 0.5), 0 4px 28px #ee161f, 0 4px 28px red;
+
+    }
+
+    .center {
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        background-color: #ee161f;
+        border-radius: 30px;
+
+    }
+
+    .mark {
+        width: 300px;
+        height: 2px;
+        position: absolute;
+        margin-left: -150px;
+        margin-top: -1px;
+    }
+
+    .markP {
+        width: 20px;
+        height: 2px;
+        background-color: #ee161f;
+        position: absolute;
+    }
+
+    .sec {
+        width: 140px;
+        height: 5px;
+        border-radius: 0px 5px 5px 0px;
+        position: absolute;
+        margin-left: 140px;
+        background-color: #999;
+        transform-origin: left;
+        /* box-shadow: 7px 4px 3px rgb(223, 10, 10); */
+    }
+
+    .min {
+        width: 110px;
+        height: 5px;
+        border-radius: 0px 5px 5px 0px;
+        position: absolute;
+        margin-left: 114px;
+        background-color: rgb(207, 17, 17);
+        transform-origin: left;
+        /* box-shadow: 7px 4px 3px rgb(223, 10, 10); */
+    }
+
+    .hour {
+        width: 80px;
+        height: 5px;
+        border-radius: 0px 5px 5px 0px;
+        position: absolute;
+        margin-left: 80px;
+        background-color: rgb(207, 17, 17);
+        transform-origin: left;
+        /* box-shadow: 7px 4px 3px rgb(223, 10, 10); */
+    }
+
+    .rDigital {
+        display: flex;
+        flex-direction: row;
+        color: white;
+        font-size: 50px;
+    }
+</style>
+
+
+<body>
+
+    <div class="geral">
+        <h1>RELÓGIO ANALÓGICO</h1>
+        <div class="container">
+            <div class="marks">
+                <div class="mark" style="transform: rotate(0deg);">
+                    <div class="markP"></div>
+                </div>
+                <div class="mark" style="transform: rotate(30deg);">
+                    <div class="markP"></div>
+                </div>
+                <div class="mark" style="transform: rotate(60deg);">
+                    <div class="markP"></div>
+                </div>
+                <div class="mark" style="transform: rotate(90deg);">
+                    <div class="markP"></div>
+                </div>
+                <div class="mark" style="transform: rotate(120deg);">
+                    <div class="markP"></div>
+                </div>
+                <div class="mark" style="transform: rotate(150deg);">
+                    <div class="markP"></div>
+                </div>
+                <div class="mark" style="transform: rotate(180deg);">
+                    <div class="markP"></div>
+                </div>
+                <div class="mark" style="transform: rotate(210deg);">
+                    <div class="markP"></div>
+                </div>
+                <div class="mark" style="transform: rotate(240deg);">
+                    <div class="markP"></div>
+                </div>
+                <div class="mark" style="transform: rotate(270deg);">
+                    <div class="markP"></div>
+                </div>
+                <div class="mark" style="transform: rotate(300deg);">
+                    <div class="markP"></div>
+                </div>
+                <div class="mark" style="transform: rotate(330deg);">
+                    <div class="markP"></div>
+                </div>
+            </div>
+            <div class="sec"></div>
+            <div class="min"></div>
+            <div class="hour"></div>
+            <div class="center"></div>
+        </div>
+        <h1>RELÓGIO DIGITAL</h1>
+        <div class="rDigital">
+            <div class="rd_h"></div>
+            <div class="rd_m"></div>
+            <div class="rd_s"></div>
+        </div>
+
+    </div>
+
+    <script>
+        /*RELÓGIO ANALÓGICO*/
+
+        let pont_sec = document.querySelector('.sec');
+        let pont_min = document.querySelector('.min');
+        let pont_hour = document.querySelector('.hour');
+
+        /*RELÓGIO DIGITAL*/
+        let h = document.querySelector('.rd_h');
+        let m = document.querySelector('.rd_m');
+        let s = document.querySelector('.rd_s');
+
+        function clock() {
+            let dateNow = new Date();
+            let p_s = ((360 * dateNow.getSeconds()) / 60) - 90;
+            let p_m = ((360 * dateNow.getMinutes()) / 60) - 90;
+            let p_h = ((360 * dateNow.getHours()) / 36) - 90;
+
+            h.innerHTML = `${adjustDec(dateNow.getHours())}:`;
+            m.innerHTML = `${adjustDec(dateNow.getMinutes())}:`;
+            s.innerHTML = adjustDec(dateNow.getSeconds());
+
+            pont_sec.style.transform = `rotate(${p_s}deg)`;
+            pont_min.style.transform = `rotate(${p_m}deg)`;
+            pont_hour.style.transform = `rotate(${p_h}deg)`;
+        }
+        function adjustDec(t) {
+            return t < 10 ? '0' + t : t;
+        }
+
+        clock();
+        setInterval(clock, 1000);
+
+
+
+        function testeClock() {
+            let dateNow = new Date();
+            console.log(((360 * dateNow.getHours()) / 36) - 90);
+        }
+        testeClock();
+        setInterval(testeClock, 1000);
+
+
+    </script>
+
+</body>
+
+</html>
